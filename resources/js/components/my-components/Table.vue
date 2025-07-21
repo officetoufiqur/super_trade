@@ -87,7 +87,7 @@ watch([search, entriesPerPage], () => {
                 <div class="lg:flex gap-2 mb-4 space-x-4 space-y-5 lg:space-y-0 lg:space-x-0">
                     <template v-if="showCreateButton">
                         <Link :href="createRoute ?? '#'"
-                            class="bg-red-700 duration-300 text-[13px] md:text-[15px] lg:[16px] cursor-pointer text-white px-8 py-2 rounded">
+                            class="bg-[#74B53B] duration-300 hover:bg-[#74B53B]/80 text-[13px] md:text-[15px] lg:[16px] cursor-pointer text-white px-8 py-2 rounded">
                         {{ props.createTitle ?? 'Create' }}
                         </Link>
                     </template>
@@ -115,7 +115,7 @@ watch([search, entriesPerPage], () => {
 
         <div class="overflow-x-auto">
             <table class="min-w-full bg-white border">
-                <thead class="bg-[#FCF2F2] text-sm text-gray-500">
+                <thead class="bg-[#74B53B]/20 text-sm text-gray-600">
                     <tr>
                         <th v-for="col in columns" :key="col.key" class="px-4 py-2 text-left cursor-pointer select-none"
                             @click="() => toggleSort(col.key)">
@@ -132,7 +132,7 @@ watch([search, entriesPerPage], () => {
                         <td v-for="col in columns" :key="col.key"
                             class="border text-[13px] md:text-[15px] lg:[16px] border-gray-200 px-4 py-2">
                             <slot :name="col.key" :item="item">
-                                {{ item[col.key] }}
+                                {{ item[col.key] ?? 'N/A' }}
                             </slot>
                         </td>
                     </tr>
@@ -150,12 +150,12 @@ watch([search, entriesPerPage], () => {
             </div>
             <div class="flex gap-1">
                 <button @click="currentPage--" :disabled="currentPage === 1"
-                    class="px-2 py-1 border rounded disabled:opacity-50">
+                    class="px-2 py-1 border rounded disabled:opacity-50 cursor-pointer">
                     ‹
                 </button>
-                <button class="px-2 py-1 border rounded bg-[#CA2026] text-white">{{ currentPage }}</button>
+                <button class="px-2 py-1 border rounded bg-[#74B53B] cursor-pointer text-white">{{ currentPage }}</button>
                 <button @click="currentPage++" :disabled="currentPage >= totalPages"
-                    class="px-2 py-1 border rounded disabled:opacity-50">
+                    class="px-2 py-1 border rounded disabled:opacity-50 cursor-pointer">
                     ›
                 </button>
             </div>

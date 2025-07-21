@@ -9,3 +9,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/banner', [HomeController::class, 'bannerApi']);
+Route::get('/home/navbar', [HomeController::class, 'navbarApi']);

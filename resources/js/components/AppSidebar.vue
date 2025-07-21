@@ -16,6 +16,10 @@ const mainNavItems: NavItem[] = [
     icon: HouseIcon,
     subMenu: [
       {
+        title: 'Navbar',
+        href: '/home/navbar',
+      },
+      {
         title: 'Banner',
         href: '/banner',
       },
