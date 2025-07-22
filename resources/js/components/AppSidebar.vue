@@ -3,7 +3,7 @@ import NavMain from '@/components/NavMain.vue';
 import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { HouseIcon, LayoutGrid } from 'lucide-vue-next';
+import { HouseIcon, InfoIcon, LayoutGrid } from 'lucide-vue-next';
 
 const mainNavItems: NavItem[] = [
   {
@@ -23,6 +23,28 @@ const mainNavItems: NavItem[] = [
         title: 'Banner',
         href: '/banner',
       },
+      {
+        title: 'Supertrade',
+        href: '/home/supertrade',
+      },
+      {
+        title: 'Superfacts',
+        href: '/home/superfacts',
+      },
+      {
+        title: 'Footer',
+        href: '/home/footer',
+      }
+    ]
+  },
+  {
+    title: 'About',
+    icon: InfoIcon,
+    subMenu: [
+      {
+        title: 'Banner',
+        href: '/about/banner',
+      }
     ]
   }
 ];

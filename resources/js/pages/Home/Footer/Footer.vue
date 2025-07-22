@@ -9,8 +9,8 @@ import Swal from 'sweetalert2';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Navbar',
-        href: '/home/navbar',
+        title: 'Footer',
+        href: '/home/footer',
     },
 ];
 
@@ -18,25 +18,29 @@ const props = defineProps<{
     flash: {
         message?: string;
     };
-    navbar: {
+    footer: {
         id: number;
         language: string;
-        title_eng: string;
+        section_title_eng: string;
+        section_title_fr: string;
+        label_eng: string;
+        label_fr: string;
         url: string;
-        title_fr: string;
     }[];
 }>();
 
 const columns = [
     { key: 'id', label: 'ID' },
     { key: 'language', label: 'Language' },
-    { key: 'title_eng' ,label: 'Title English' },
-    { key: 'title_fr', label: 'Title French' },
-    { key: 'url', label: 'URL', },
-    { key: 'action', label: 'Action' }
+    { key: 'section_title_eng', label: 'Section title eng' },
+    { key: 'section_title_fr', label: 'Section title fr' },
+    { key: 'label_eng', label: 'Label eng' },
+    { key: 'label_fr', label: 'Label fr' },
+    { key: 'url', label: 'Url' },
+    { key: 'action', label: 'Action' },
 ]
 
-function deleteNavbar(id: number) {
+function deletefooter(id: number) {
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -47,7 +51,7 @@ function deleteNavbar(id: number) {
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            router.delete(`/home/navbar/delete/${id}`, {
+            router.delete(`/home/footer/delete/${id}`, {
                 preserveScroll: true,
             });
         }
@@ -57,21 +61,21 @@ function deleteNavbar(id: number) {
 
 <template>
 
-    <Head title="Navbar" />
+    <Head title="Footer" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="pt-10 lg:px-20 px-5">
             <FlashMessage :flash="props.flash" />
-            <Table :plans="props.navbar" :columns="columns" title="Navbar" :show-create-button="true"
-                :create-title="'Create Navbar'" :create-route="'/home/navbar/create'">
+            <Table :plans="props.footer" :columns="columns" title="Footer" :show-create-button="true"
+                :create-title="'Create Footer'" :create-route="'/home/footer/create'">
                 <template #action="{ item }">
                     <div class="space-x-2">
-                        <Link :href="'/home/navbar/edit/' + item.id"><button
+                        <Link :href="'/home/footer/edit/' + item.id"><button
                             class="bg-[#74B53B] text-white font-bold py-2 px-3 cursor-pointer rounded hover:bg-[#344248] duration-300">
                             <SquarePenIcon class="w-5 h-5" />
                         </button>
                         </Link>
-                        <button @click="deleteNavbar(item.id)"
+                        <button @click="deletefooter(item.id)"
                             class="bg-[#CA2026] text-white font-bold py-2 px-3 cursor-pointer rounded hover:bg-[#344248] duration-300">
                             <Trash2Icon class="w-5 h-5" />
                         </button>

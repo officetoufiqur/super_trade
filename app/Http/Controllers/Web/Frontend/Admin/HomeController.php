@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Web\Frontend\Admin;
 
 use Inertia\Inertia;
 use App\Models\Banner;
+use App\Models\Footer;
+use App\Models\Navbar;
+use App\Models\SuperFait;
+use App\Models\Supertrade;
+use App\Trait\ApiResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Navbar;
-use App\Trait\ApiResponse;
 
 class HomeController extends Controller
 {
@@ -17,31 +20,6 @@ class HomeController extends Controller
         $bannerEng = Banner::where('language', 'english')->first();
         $bannerFr = Banner::where('language', 'french')->first();
         return Inertia::render('Home/Banner', compact('bannerEng', 'bannerFr'));
-    }
-
-    public function bannerApi()
-    {
-        $bannerEng = Banner::where('language', 'english')->select('title_eng', 'sub_title_eng', 'btn_text1_eng', 'btn_text2_eng', 'video_eng')->first();
-        $bannerFr = Banner::where('language', 'french')->select('title_fr', 'sub_title_fr', 'btn_text1_fr', 'btn_text2_fr', 'video_fr')->first();
-
-        $data = compact('bannerEng', 'bannerFr');
-
-        if (!$bannerEng && !$bannerFr) {
-            return $this->errorResponse('No data found', 404);
-        }
-
-        return $this->successResponse($data, 'Users fetched successfully', 200, 'homePage');
-    }
-
-    public function navbarApi() {
-        $navbarEng = Navbar::where('language', 'english')->select('id', 'language','title_eng','url')->get();
-        $navbarFr = Navbar::where('language', 'france')->select('id', 'language','title_fr','url')->get();
-        $data = compact('navbarEng', 'navbarFr');
-
-        if (!$navbarEng && !$navbarFr) {
-            return $this->errorResponse('No data found', 404);
-        }
-        return $this->successResponse($data, 'Navbar fetched successfully', 200, 'navbar');
     }
 
     public function bannerEdit(Request $request, $id)
@@ -71,28 +49,143 @@ class HomeController extends Controller
         return redirect()->route('banner')->with('message', 'Banner updated successfully');
     }
 
-
-    public function navbar()
+    public function supertrade()
     {
-        $navbar = Navbar::all();
-        return Inertia::render('Home/Navbar/Navbar', compact('navbar'));
+        $supertrade = Supertrade::all();
+        return Inertia::render('Home/Supertrade/Supertrade', compact('supertrade'));
     }
 
-    public function navbarCreate()
+    public function supertradeCreate()
     {
-        return Inertia::render('Home/Navbar/NavbarCreate');
-    }   
+        return Inertia::render('Home/Supertrade/SupertradeCreate');
+    }
 
-    public function navbarStore(Request $request)
+    public function supertradeStore(Request $request)
     {
-        $navbar = new Navbar();
-        $navbar->language = $request->language;
-        $navbar->title_eng = $request->title_eng;
-        $navbar->url = $request->url;
-        $navbar->title_fr = $request->title_fr;
-        $navbar->url = $request->url;
-        $navbar->save();
+        $supertrade = new Supertrade();
+        $supertrade->language = $request->language;
 
-        return redirect()->route('home.navbar')->with('message', 'Navbar created successfully');
+        $supertrade->card_title_eng = $request->card_title_eng;
+        $supertrade->card_description_eng = $request->card_description_eng;
+
+        $supertrade->card_title_fr = $request->card_title_fr;
+        $supertrade->card_description_fr = $request->card_description_fr;
+        $supertrade->save();
+
+        return redirect()->route('supertrade')->with('message', 'Supertrade created successfully');
+    }
+
+    public function supertradeEdit($id)
+    {
+        $supertrade = Supertrade::findOrFail($id);
+        return Inertia::render('Home/Supertrade/SupertradeEdit', compact('supertrade'));
+    }
+
+    public function supertradeUpdate(Request $request, $id)
+    {
+        $supertrade = Supertrade::findOrFail($id);
+
+        $supertrade->title_eng = $request->title_eng;
+        $supertrade->card_title_eng = $request->card_title_eng;
+        $supertrade->card_description_eng = $request->card_description_eng;
+
+        $supertrade->title_fr = $request->title_fr;
+        $supertrade->card_title_fr = $request->card_title_fr;
+        $supertrade->card_description_fr = $request->card_description_fr;
+        $supertrade->image = $request->image;
+        $supertrade->save();
+        return redirect()->route('supertrade')->with('message', 'Supertrade updated successfully');
+    }
+
+    public function supertradeDestroy($id)
+    {
+        $supertrade = Supertrade::findOrFail($id);
+        $supertrade->delete();
+        return redirect()->route('supertrade')->with('message', 'Supertrade deleted successfully');
+    }
+
+    public function superfacts()
+    {
+        $superfactsEng = SuperFait::where('language', 'english')->first();
+        $superfactsFr = SuperFait::where('language', 'france')->first();
+
+        //return $superfactsFr;
+
+        return Inertia::render('Home/Superfacts/Superfacts', compact('superfactsEng', 'superfactsFr'));
+    }
+
+    public function superfactsEdit($id)
+    {
+        $superfacts = SuperFait::findOrFail($id);
+        return Inertia::render('Home/Superfacts/SuperfactsEdit', compact('superfacts'));
+    }
+
+    public function superfactsUpdate(Request $request, $id)
+    {
+        $superfacts = SuperFait::findOrFail($id);
+
+        $superfacts->title_eng = $request->title_eng;
+        $superfacts->description_eng = $request->description_eng;
+
+        $superfacts->title_fr = $request->title_fr;
+        $superfacts->description_fr = $request->description_fr;
+        $superfacts->image = $request->image;
+        $superfacts->save();
+        return redirect()->route('superfacts')->with('message', 'Superfacts updated successfully');
+    }
+
+    public function footer()
+    {
+        $footer = Footer::all();
+        return Inertia::render('Home/Footer/Footer', compact('footer'));
+    }
+
+    public function footerCreate()
+    {
+        return Inertia::render('Home/Footer/FooterCreate');
+    }
+
+    public function footerStore(Request $request)
+    {
+        $footer = new Footer();
+        $footer->language = $request->language;
+
+        $footer->section_title_eng = $request->section_title_eng;
+        $footer->label_eng = $request->label_eng;
+        $footer->url = $request->url;
+
+        $footer->section_title_fr = $request->section_title_fr;
+        $footer->label_fr = $request->label_fr;
+        $footer->url = $request->url;
+        $footer->save();
+
+        return redirect()->route('footer')->with('message', 'Footer created successfully');
+    }
+
+    public function footerEdit($id)
+    {
+        $footer = Footer::findOrFail($id);
+        return Inertia::render('Home/Footer/FooterEdit', compact('footer'));
+    }
+
+    public function footerUpdate(Request $request, $id)
+    {
+        $footer = Footer::findOrFail($id);
+
+        $footer->language = $request->language;
+        $footer->section_title_eng = $request->section_title_eng;
+        $footer->section_title_fr = $request->section_title_fr;
+        $footer->label_eng = $request->label_eng;
+        $footer->label_fr = $request->label_fr;
+        $footer->url = $request->url;
+        $footer->save();
+        return redirect()->route('footer')->with('message', 'Footer updated successfully');
+    }
+    
+    public function footerDestroy($id)
+    {
+        $footer = Footer::findOrFail($id);
+        $footer->delete();
+        return redirect()->route('footer')->with('message', 'Footer deleted successfully');
     }
 }

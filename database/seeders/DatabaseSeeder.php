@@ -24,6 +24,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             BannerSeeder::class,
             NavbarSeeder::class,
+            SupertradeSeeder::class,
+            SuperFaitSeeder::class,
+            FooterSeeder::class,
+            AboutSeeder::class
         ]);
     }
 }

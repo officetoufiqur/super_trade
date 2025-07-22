@@ -9,8 +9,8 @@ import Swal from 'sweetalert2';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Navbar',
-        href: '/home/navbar',
+        title: 'Supertrade',
+        href: '/home/supertrade',
     },
 ];
 
@@ -18,25 +18,30 @@ const props = defineProps<{
     flash: {
         message?: string;
     };
-    navbar: {
+    supertrade: {
         id: number;
         language: string;
         title_eng: string;
-        url: string;
         title_fr: string;
+        card_title_eng: string;
+        card_title_fr: string;
+        card_description_eng: string;
+        card_description_fr: string;
+        image: string;
     }[];
 }>();
 
 const columns = [
     { key: 'id', label: 'ID' },
     { key: 'language', label: 'Language' },
-    { key: 'title_eng' ,label: 'Title English' },
+    { key: 'title_eng', label: 'Title English' },
+    { key: 'card_title_eng', label: 'Card Title English' },
     { key: 'title_fr', label: 'Title French' },
-    { key: 'url', label: 'URL', },
+    { key: 'card_title_fr', label: 'Card Title French' },
     { key: 'action', label: 'Action' }
 ]
 
-function deleteNavbar(id: number) {
+function deletesupertrade(id: number) {
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -47,7 +52,7 @@ function deleteNavbar(id: number) {
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            router.delete(`/home/navbar/delete/${id}`, {
+            router.delete(`/home/supertrade/delete/${id}`, {
                 preserveScroll: true,
             });
         }
@@ -57,24 +62,30 @@ function deleteNavbar(id: number) {
 
 <template>
 
-    <Head title="Navbar" />
+    <Head title="Supertrade" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="pt-10 lg:px-20 px-5">
             <FlashMessage :flash="props.flash" />
-            <Table :plans="props.navbar" :columns="columns" title="Navbar" :show-create-button="true"
-                :create-title="'Create Navbar'" :create-route="'/home/navbar/create'">
+            <Table :plans="props.supertrade" :columns="columns" title="Supertrade" :show-create-button="true"
+                :create-title="'Create Supertrade'" :create-route="'/home/supertrade/create'">
                 <template #action="{ item }">
-                    <div class="space-x-2">
-                        <Link :href="'/home/navbar/edit/' + item.id"><button
+                    <div class="space-x-2 flex">
+                        <Link :href="'/home/supertrade/edit/' + item.id">
+                        <button
                             class="bg-[#74B53B] text-white font-bold py-2 px-3 cursor-pointer rounded hover:bg-[#344248] duration-300">
                             <SquarePenIcon class="w-5 h-5" />
                         </button>
                         </Link>
-                        <button @click="deleteNavbar(item.id)"
-                            class="bg-[#CA2026] text-white font-bold py-2 px-3 cursor-pointer rounded hover:bg-[#344248] duration-300">
-                            <Trash2Icon class="w-5 h-5" />
-                        </button>
+                        <div v-if="(
+                            (!item.title_eng || item.title_eng.trim() === '') &&
+                            (!item.title_fr || item.title_fr.trim() === '')
+                        )">
+                            <button @click="deletesupertrade(item.id)"
+                                class="bg-[#CA2026] text-white font-bold py-2 px-3 cursor-pointer rounded hover:bg-[#344248] duration-300">
+                                <Trash2Icon class="w-5 h-5" />
+                            </button>
+                        </div>
                     </div>
                 </template>
             </Table>
