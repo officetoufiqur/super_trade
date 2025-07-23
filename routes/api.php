@@ -15,3 +15,4 @@ Route::get('/home/supertrade', [APIController::class, 'supertradeApi']);
 Route::get('/home/super-faits', [APIController::class, 'superFaitApi']);
 Route::get('/footer', [APIController::class, 'footerApi']);
 Route::get('/home/about', [APIController::class, 'aboutApi']);
+Route::get('/services', [APIController::class, 'servicesApi']);

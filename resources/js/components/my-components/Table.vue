@@ -25,7 +25,7 @@ const props = defineProps<{
     shortIcon?: boolean;
 }>();
 
-const entriesPerPage = ref(10);
+const entriesPerPage = ref(5);
 const currentPage = ref(1);
 const search = ref('');
 const sortKey = ref('');
@@ -87,7 +87,7 @@ watch([search, entriesPerPage], () => {
                 <div class="lg:flex gap-2 mb-4 space-x-4 space-y-5 lg:space-y-0 lg:space-x-0">
                     <template v-if="showCreateButton">
                         <Link :href="createRoute ?? '#'"
-                            class="bg-[#74B53B] duration-300 hover:bg-[#74B53B]/80 text-[13px] md:text-[15px] lg:[16px] cursor-pointer text-white px-8 py-2 rounded">
+                            class="bg-[#74B53B] duration-300 hover:bg-[#344248] text-[13px] md:text-[15px] lg:[16px] cursor-pointer text-white px-8 py-2 rounded">
                         {{ props.createTitle ?? 'Create' }}
                         </Link>
                     </template>
@@ -132,7 +132,12 @@ watch([search, entriesPerPage], () => {
                         <td v-for="col in columns" :key="col.key"
                             class="border text-[13px] md:text-[15px] lg:[16px] border-gray-200 px-4 py-2">
                             <slot :name="col.key" :item="item">
-                                {{ item[col.key] ?? 'N/A' }}
+                                <template v-if="item[col.key]">
+                                    {{ item[col.key] }}
+                                </template>
+                                <template v-else>
+                                    <span class="italic text-gray-500">N/A</span>
+                                </template>
                             </slot>
                         </td>
                     </tr>
@@ -153,7 +158,8 @@ watch([search, entriesPerPage], () => {
                     class="px-2 py-1 border rounded disabled:opacity-50 cursor-pointer">
                     ‹
                 </button>
-                <button class="px-2 py-1 border rounded bg-[#74B53B] cursor-pointer text-white">{{ currentPage }}</button>
+                <button class="px-2 py-1 border rounded bg-[#74B53B] cursor-pointer text-white">{{ currentPage
+                    }}</button>
                 <button @click="currentPage++" :disabled="currentPage >= totalPages"
                     class="px-2 py-1 border rounded disabled:opacity-50 cursor-pointer">
                     ›

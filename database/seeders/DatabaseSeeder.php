@@ -27,7 +27,9 @@ class DatabaseSeeder extends Seeder
             SupertradeSeeder::class,
             SuperFaitSeeder::class,
             FooterSeeder::class,
-            AboutSeeder::class
+            AboutSeeder::class,
+            BannerCMSSeeder::class,
+            ServiceSeeder::class,
         ]);
     }
 }

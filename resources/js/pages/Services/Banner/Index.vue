@@ -7,8 +7,8 @@ import { SquarePenIcon } from 'lucide-vue-next';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'About Banner',
-        href: '/about/banner',
+        title: 'Services Banner',
+        href: '/services/banner',
     },
 ];
 
@@ -16,30 +16,30 @@ const props = defineProps<{
     flash: {
         message?: string;
     };
-    aboutBannerEng: {
+    serviceBannerEng: {
         id: number;
         language: string;
-        banner_title_eng: string;
-        banner_sort_title_eng: string;
-        banner_image: string;
+        title_eng: string;
+        sub_title_eng: string;
+        image: string;
     };
-    aboutBannerFr: {
+    serviceBannerFr: {
         id: number;
         language: string;
-        banner_title_fr: string;
-        banner_sort_title_fr: string;
-        banner_image: string;
+        title_fr: string;
+        sub_title_fr: string;
+        image: string;
     };
 }>();
 </script>
 
 <template>
 
-    <Head title="About Banner" />
+    <Head title="Services Banner" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="pt-10 lg:px-20 px-5">
-            <h1 class="text-2xl font-medium mb-4">About Banner List</h1>
+            <h1 class="text-2xl font-medium mb-4">Services Banner List</h1>
             <FlashMessage :flash="props.flash" />
             <div class="overflow-x-auto">
                 <table class="min-w-full bg-white border">
@@ -47,6 +47,9 @@ const props = defineProps<{
                         <tr>
                             <th scope="col" class="px-4 py-2 text-left cursor-pointer select-none">
                                 ID
+                            </th>
+                            <th scope="col" class="px-4 py-2 text-left cursor-pointer select-none">
+                                Image
                             </th>
                             <th scope="col" class="px-4 py-2 text-left cursor-pointer select-none">
                                 Language
@@ -63,43 +66,49 @@ const props = defineProps<{
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-if="props.aboutBannerEng">
+                        <tr v-if="props.serviceBannerEng">
                             <th scope="row"
                                 class="border text-[13px] md:text-[15px] lg:[16px] border-gray-200 px-4 py-2">
-                                {{ props.aboutBannerEng.id }}
+                                {{ props.serviceBannerEng.id }}
                             </th>
                             <td class="border text-[13px] md:text-[15px] lg:[16px] border-gray-200 px-4 py-2">
-                                {{ props.aboutBannerEng.language }}
+                                <img :src="props.serviceBannerEng.image" alt="img" class="w-15 h-15">
                             </td>
                             <td class="border text-[13px] md:text-[15px] lg:[16px] border-gray-200 px-4 py-2">
-                                {{ props.aboutBannerEng.banner_title_eng }}
+                                {{ props.serviceBannerEng.language }}
                             </td>
                             <td class="border text-[13px] md:text-[15px] lg:[16px] border-gray-200 px-4 py-2">
-                                {{ props.aboutBannerEng.banner_sort_title_eng }}
+                                {{ props.serviceBannerEng.title_eng }}
                             </td>
                             <td class="border text-[13px] md:text-[15px] lg:[16px] border-gray-200 px-4 py-2">
-                                <Link :href="'/about/banner/edit/' + props.aboutBannerEng.id">
+                                {{ props.serviceBannerEng.sub_title_eng }}
+                            </td>
+                            <td class="border text-[13px] md:text-[15px] lg:[16px] border-gray-200 px-4 py-2">
+                                <Link :href="'/services/banner/edit/' + props.serviceBannerEng.id">
                                 <SquarePenIcon
                                     class="w-9 h-7 bg-[#74B53B] p-1 rounded text-white hover:bg-[#344248] duration-300" />
                                 </Link>
                             </td>
                         </tr>
-                        <tr v-if="props.aboutBannerFr">
+                        <tr v-if="props.serviceBannerFr">
                             <th scope="row"
                                 class="border text-[13px] md:text-[15px] lg:[16px] border-gray-200 px-4 py-2">
-                                {{ props.aboutBannerFr.id }}
+                                {{ props.serviceBannerFr.id }}
                             </th>
                             <td class="border text-[13px] md:text-[15px] lg:[16px] border-gray-200 px-4 py-2">
-                                {{ props.aboutBannerFr.language }}
+                                <img :src="props.serviceBannerEng.image" alt="img" class="w-15 h-15">
                             </td>
                             <td class="border text-[13px] md:text-[15px] lg:[16px] border-gray-200 px-4 py-2">
-                                {{ props.aboutBannerFr.banner_title_fr }}
+                                {{ props.serviceBannerFr.language }}
                             </td>
                             <td class="border text-[13px] md:text-[15px] lg:[16px] border-gray-200 px-4 py-2">
-                                {{ props.aboutBannerFr.banner_sort_title_fr }}
+                                {{ props.serviceBannerFr.title_fr }}
                             </td>
                             <td class="border text-[13px] md:text-[15px] lg:[16px] border-gray-200 px-4 py-2">
-                                <Link :href="'/about/banner/edit/' + props.aboutBannerFr.id">
+                                {{ props.serviceBannerFr.sub_title_fr }}
+                            </td>
+                            <td class="border text-[13px] md:text-[15px] lg:[16px] border-gray-200 px-4 py-2">
+                                <Link :href="'/services/banner/edit/' + props.serviceBannerFr.id">
                                 <SquarePenIcon
                                     class="w-9 h-7 bg-[#74B53B] p-1 rounded text-white hover:bg-[#344248] duration-300" />
                                 </Link>
