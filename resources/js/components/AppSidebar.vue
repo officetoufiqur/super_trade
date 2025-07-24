@@ -3,7 +3,7 @@ import NavMain from '@/components/NavMain.vue';
 import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { HouseIcon, InfoIcon, LayoutGrid, UserRoundCogIcon } from 'lucide-vue-next';
+import { HouseIcon, InfoIcon, LayoutGrid, MousePointerClickIcon, UserRoundCogIcon } from 'lucide-vue-next';
 
 const mainNavItems: NavItem[] = [
   {
@@ -74,6 +74,32 @@ const mainNavItems: NavItem[] = [
       {
         title: 'Choose',
         href: '/service/choose',
+      }
+    ]
+  },
+  {
+    title: 'Join',
+    icon: MousePointerClickIcon,
+    subMenu: [
+      {
+        title: 'Banner',
+        href: '/join/now/banner',
+      },
+      {
+        title: 'Join Now',
+        href: '/join/now',
+      },
+      {
+        title: 'Join Form',
+        href: '/join/form',
+      },
+      {
+        title: 'Why Choose',
+        href: '/join/choose',
+      },
+      {
+        title: 'Join Happens',
+        href: '/join/happens',
       }
     ]
   }

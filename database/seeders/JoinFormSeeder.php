@@ -1,0 +1,117 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\JoinForm;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class JoinFormSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        JoinForm::insert([
+            [
+                'language' => 'english',
+                'join_form_icon_eng' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users w-6 h-6" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>',
+                'join_form_title_eng' => 'Get Started Today',
+                'join_form_sub_title_eng' => 'Please fill out the form and our team will get back to you to assist with the SUPER EASY enrollment process.',
+                'join_form_cname_label_eng' => 'Company Name',
+                'join_form_cname_placeholder_eng' => 'Company Name',
+                'join_form_name_label_eng' => 'Name/Last Name',
+                'join_form_name_placeholder_eng' => 'Enter your full name',
+                'join_form_phone_label_eng' => 'Cell Phone',
+                'join_form_phone_placeholder_eng' => 'Enter your phone',
+                'join_form_email_label_eng' => 'Email',
+                'join_form_email_placeholder_eng' => 'Enter your email',
+                'join_form_business_label_eng' => 'Business Website',
+                'join_form_business_placeholder_eng' => 'Enter your website URL',
+                'join_form_address_label_eng' => 'Address',
+                'join_form_address_placeholder_eng' => 'Enter your business address',
+                'join_form_about_us_label_eng' => 'How did you hear about us?',
+                'join_form_about_us_placeholder_eng' => 'Please select an option',
+                'join_form_about_us_menu1_eng' => 'Google Search',
+                'join_form_about_us_menu2_eng' => 'Social Media',
+                'join_form_about_us_menu3_eng' => 'Referral',
+                'join_form_about_us_menu4_eng' => 'Advertisement',
+                'join_form_about_us_menu5_eng' => 'Trade Show/Event',
+                'join_form_about_us_menu6_eng' => 'Existing Member',
+                'join_form_icon_fr' => null,
+                'join_form_title_fr' => null,
+                'join_form_sub_title_fr' => null,
+                'join_form_cname_label_fr' => null,
+                'join_form_cname_placeholder_fr' => null,
+                'join_form_name_label_fr' => null,
+                'join_form_name_placeholder_fr' => null,
+                'join_form_phone_label_fr' => null,
+                'join_form_phone_placeholder_fr' => null,
+                'join_form_email_label_fr' => null,
+                'join_form_email_placeholder_fr' => null,
+                'join_form_business_label_fr' => null,
+                'join_form_business_placeholder_fr' => null,
+                'join_form_address_label_fr' => null,
+                'join_form_address_placeholder_fr' => null,
+                'join_form_about_us_label_fr' => null,
+                'join_form_about_us_placeholder_fr' => null,
+                'join_form_about_us_menu1_fr' => null,
+                'join_form_about_us_menu2_fr' => null,
+                'join_form_about_us_menu3_fr' => null,
+                'join_form_about_us_menu4_fr' => null,
+                'join_form_about_us_menu5_fr' => null,
+                'join_form_about_us_menu6_fr' => null,
+            ],
+            [
+                'language' => 'france',
+                'join_form_icon_eng' => null,
+                'join_form_title_eng' => null,
+                'join_form_sub_title_eng' => null,
+                'join_form_cname_label_eng' => null,
+                'join_form_cname_placeholder_eng' => null,
+                'join_form_name_label_eng' => null,
+                'join_form_name_placeholder_eng' => null,
+                'join_form_phone_label_eng' => null,
+                'join_form_phone_placeholder_eng' => null,
+                'join_form_email_label_eng' => null,
+                'join_form_email_placeholder_eng' => null,
+                'join_form_business_label_eng' => null,
+                'join_form_business_placeholder_eng' => null,
+                'join_form_address_label_eng' => null,
+                'join_form_address_placeholder_eng' => null,
+                'join_form_about_us_label_eng' => null,
+                'join_form_about_us_placeholder_eng' => null,
+                'join_form_about_us_menu1_eng' => null,
+                'join_form_about_us_menu2_eng' => null,
+                'join_form_about_us_menu3_eng' => null,
+                'join_form_about_us_menu4_eng' => null,
+                'join_form_about_us_menu5_eng' => null,
+                'join_form_about_us_menu6_eng' => null,
+                'join_form_icon_fr' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users w-6 h-6" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>',
+                'join_form_title_fr' => 'Commencez Dès Aujourd’hui',
+                'join_form_sub_title_fr' => 'Veuillez remplir le formulaire et notre équipe vous contactera pour vous accompagner dans le processus d’inscription ULTRA SIMPLE.',
+                'join_form_cname_label_fr' => 'Nom de l’entreprise *',
+                'join_form_cname_placeholder_fr' => 'Nom de l’entreprise',
+                'join_form_name_label_fr' => 'Nom et prénom *',
+                'join_form_name_placeholder_fr' => 'Entrez votre nom complet',
+                'join_form_phone_label_fr' => 'Téléphone portable *',
+                'join_form_phone_placeholder_fr' => 'Entrez votre numéro de téléphone',
+                'join_form_email_label_fr' => 'E-mail *',
+                'join_form_email_placeholder_fr' => 'Entrez votre adresse e-mail',
+                'join_form_business_label_fr' => 'Site web de l’entreprise',
+                'join_form_business_placeholder_fr' => 'Entrez l’URL de votre site web',
+                'join_form_address_label_fr' => 'Adresse *',
+                'join_form_address_placeholder_fr' => 'Entrez l’adresse de votre entreprise',
+                'join_form_about_us_label_fr' => 'Comment avez-vous entendu parler de nous ? *',
+                'join_form_about_us_placeholder_fr' => 'Veuillez sélectionner une option',
+                'join_form_about_us_menu1_fr' => 'Recherche Google',
+                'join_form_about_us_menu2_fr' => 'Réseaux sociaux',
+                'join_form_about_us_menu3_fr' => 'Référence',
+                'join_form_about_us_menu4_fr' => 'Publicité',
+                'join_form_about_us_menu5_fr' => 'Salon/Événement',
+                'join_form_about_us_menu6_fr' => 'Membre existant',
+            ]
+        ]);
+    }
+}

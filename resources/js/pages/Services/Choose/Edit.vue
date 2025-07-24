@@ -6,60 +6,48 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Service Trading Edit',
+        title: 'Service Choose Edit',
         href: '/service/trading',
     },
 ];
 
 const props = defineProps<{
-    serviceTrading: {
+    serviceChoose: {
         id: number;
         language: string;
-        trading_card_image: string;
-        trading_card_title_eng: string;
-        trading_card_sub_title_eng: string;
-        trading_card_list1_eng: string;
-        trading_card_list2_eng: string;
-        trading_card_list3_eng: string;
-        trading_card_title_fr: string;
-        trading_card_sub_title_fr: string;
-        trading_card_list1_fr: string;
-        trading_card_list2_fr: string;
-        trading_card_list3_fr: string;
+        service_choose_card_icon: string;
+        service_choose_card_title_eng: string;
+        service_choose_card_sub_title_eng: string;
+        service_choose_card_title_fr: string;
+        service_choose_card_sub_title_fr: string;
     };
 }>();
 
 const form = useForm({
-    id: props.serviceTrading.id,
-    language: props.serviceTrading.language,
-    trading_card_image: props.serviceTrading.trading_card_image,
-    trading_card_title_eng: props.serviceTrading.trading_card_title_eng,
-    trading_card_sub_title_eng: props.serviceTrading.trading_card_sub_title_eng,
-    trading_card_list1_eng: props.serviceTrading.trading_card_list1_eng,
-    trading_card_list2_eng: props.serviceTrading.trading_card_list2_eng,
-    trading_card_list3_eng: props.serviceTrading.trading_card_list3_eng,
-    trading_card_title_fr: props.serviceTrading.trading_card_title_fr,
-    trading_card_sub_title_fr: props.serviceTrading.trading_card_sub_title_fr,
-    trading_card_list1_fr: props.serviceTrading.trading_card_list1_fr,
-    trading_card_list2_fr: props.serviceTrading.trading_card_list2_fr,
-    trading_card_list3_fr: props.serviceTrading.trading_card_list3_fr,
+    id: props.serviceChoose.id,
+    language: props.serviceChoose.language,
+    service_choose_card_icon: props.serviceChoose.service_choose_card_icon,
+    service_choose_card_title_eng: props.serviceChoose.service_choose_card_title_eng,
+    service_choose_card_sub_title_eng: props.serviceChoose.service_choose_card_sub_title_eng,
+    service_choose_card_title_fr: props.serviceChoose.service_choose_card_title_fr,
+    service_choose_card_sub_title_fr: props.serviceChoose.service_choose_card_sub_title_fr,
 });
 
 const submit = () => {
-    form.post('/service/trading/update/' + props.serviceTrading.id);
+    form.post('/service/choose/update/' + props.serviceChoose.id);
 };
 
 </script>
 
 <template>
 
-    <Head title="Service Trading Edit" />
+    <Head title="Service Choose Edit" />
 
     <AppLayout :breadcrumbs="breadcrumbs">
         <div class="pt-10 lg:px-20 px-5">
             <div class="flex items-center justify-between">
-                <h1 class="text-2xl font-medium mb-4">Service Trading Edit</h1>
-                <Link :href="'/service/trading'"><button
+                <h1 class="text-2xl font-medium mb-4">Service Choose Edit</h1>
+                <Link :href="'/service/choose'"><button
                     class="bg-[#74B53B] text-white font-bold py-2 px-6 cursor-pointer rounded hover:bg-[#344248] duration-300">Back</button>
                 </Link>
             </div>
@@ -78,40 +66,25 @@ const submit = () => {
                     </div>
 
                     <div v-if="form.language === 'english'" class="lg:grid grid-cols-2 mt-5 gap-5">
-                        <InputLabel forr="trading_card_image" :label="'Card Image'" v-model="form.trading_card_image"
-                            type="text" :placeholder="'Enter your card image url'" />
-                        <InputLabel forr="trading_card_title_eng" :label="'Card Title English'"
-                            v-model="form.trading_card_title_eng" type="text"
+                        <InputLabel forr="service_choose_card_icon" :label="'Choose Card Icon English'" v-model="form.service_choose_card_icon"
+                            type="text" :placeholder="'Enter your card icon'" />
+                        <InputLabel forr="service_choose_card_title_eng" :label="'Choose Card Title English'"
+                            v-model="form.service_choose_card_title_eng" type="text"
                             :placeholder="'Enter your title english'" />
-                        <InputLabel forr="trading_card_sub_title_eng" :label="'Card Sub Title English'"
-                            v-model="form.trading_card_sub_title_eng" type="text"
+                        <InputLabel forr="service_choose_card_sub_title_eng" :label="'Choose Card Sub Title English'"
+                            v-model="form.service_choose_card_sub_title_eng" type="text"
                             :placeholder="'Enter your card sub title english'" />
-                        <InputLabel forr="trading_card_list1_eng" :label="'Card List 1 English'"
-                            v-model="form.trading_card_list1_eng" type="text"
-                            :placeholder="'Enter your card list 1 english'" />
-                        <InputLabel forr="trading_card_list2_eng" :label="'Card List 2 English'"
-                            v-model="form.trading_card_list2_eng" type="text"
-                            :placeholder="'Enter your card list 2 english'" />
-                        <InputLabel forr="trading_card_list3_eng" :label="'Card List 3 English'"
-                            v-model="form.trading_card_list3_eng" type="text"
-                            :placeholder="'Enter your card list 3 english'" />
                     </div>
 
                     <div v-if="form.language === 'france'" class="lg:grid grid-cols-2 mt-5 gap-5">
-                        <InputLabel forr="trading_card_title_fr" :label="'Card Title France'"
-                            v-model="form.trading_card_title_fr" type="text" :placeholder="'Enter your title france'" />
-                        <InputLabel forr="trading_card_sub_title_fr" :label="'Card Sub Title France'"
-                            v-model="form.trading_card_sub_title_fr" type="text"
-                            :placeholder="'Enter your card sub title france'" />
-                        <InputLabel forr="trading_card_list1_fr" :label="'Card List 1 France'"
-                            v-model="form.trading_card_list1_fr" type="text"
-                            :placeholder="'Enter your card list 1 france'" />
-                        <InputLabel forr="trading_card_list2_fr" :label="'Card List 2 France'"
-                            v-model="form.trading_card_list2_fr" type="text"
-                            :placeholder="'Enter your card list 2 france'" />
-                        <InputLabel forr="trading_card_list3_fr" :label="'Card List 3 France'"
-                            v-model="form.trading_card_list3_fr" type="text"
-                            :placeholder="'Enter your card list 3 france'" />
+                        <InputLabel forr="service_choose_card_icon" :label="'Choose Card Icon French'" v-model="form.service_choose_card_icon"
+                            type="text" :placeholder="'Enter your card icon'" />
+                        <InputLabel forr="service_choose_card_title_fr" :label="'Choose Card Title French'"
+                            v-model="form.service_choose_card_title_fr" type="text"
+                            :placeholder="'Enter your title french'" />
+                        <InputLabel forr="service_choose_card_sub_title_fr" :label="'Choose Card Sub Title French'"
+                            v-model="form.service_choose_card_sub_title_fr" type="text"
+                            :placeholder="'Enter your card sub title french'" />
                     </div>
 
                     <button type="submit"

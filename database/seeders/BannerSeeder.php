@@ -40,7 +40,7 @@ class BannerSeeder extends Seeder
                     'btn_text1_fr' => 'Prendre Contact',
                     'btn_text2_fr' => 'Rejoignez Maintenant',
                     'video_fr' => 'https://www.youtube.com/embed/your-video-id',
-                ]
+                ],
             ]
         );
     }

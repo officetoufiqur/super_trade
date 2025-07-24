@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\Web\Admin\AboutController;
-use App\Http\Controllers\Web\Admin\NavbarController;
-use App\Http\Controllers\Web\Admin\ServiceController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Web\Frontend\Admin\DashboardController;
+use App\Http\Controllers\Web\Admin\AboutController;
+use App\Http\Controllers\Web\Admin\NavbarController;
+use App\Http\Controllers\Web\Admin\JoinNowController;
+use App\Http\Controllers\Web\Admin\ServiceController;
 use App\Http\Controllers\Web\Frontend\Admin\HomeController;
+use App\Http\Controllers\Web\Frontend\Admin\DashboardController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
@@ -93,6 +94,39 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // service Choose 
     Route::get('/service/choose', [ServiceController::class, 'serviceChoose'])->name('service.choose');
+    Route::get('/service/choose/heading/edit/{id}', [ServiceController::class, 'serviceChooseHeddingEdit'])->name('service.choose.heading.edit');
+    Route::post('/service/choose/heading/update/{id}', [ServiceController::class, 'serviceChooseHeddingUpdate'])->name('service.choose.heading.update');
+    Route::get('/service/choose/card/create', [ServiceController::class, 'serviceChooseCreate'])->name('service.choose.create');
+    Route::post('/service/choose/store', [ServiceController::class, 'serviceChooseStore'])->name('service.choose.store');
+    Route::get('/service/choose/edit/{id}', [ServiceController::class, 'serviceChooseEdit'])->name('service.choose.edit');
+    Route::post('/service/choose/update/{id}', [ServiceController::class, 'serviceChooseUpdate'])->name('service.choose.update');
+    Route::delete('/service/choose/card/delete/{id}', [ServiceController::class, 'serviceChooseDestroy'])->name('service.choose.destroy');
+
+    // join now
+    Route::get('/join/now/banner', [JoinNowController::class, 'joinNowBanner'])->name('join.now.banner');
+    Route::get('/join/now/banner/edit/{id}', [JoinNowController::class, 'joinNowBannerEdit'])->name('join.now.banner.edit');
+    Route::post('/join/now/banner/update/{id}', [JoinNowController::class, 'joinNowBannerUpdate'])->name('join.now.banner.update');
+
+    Route::get('/join/now', [JoinNowController::class, 'joinNow'])->name('join.now');
+    Route::get('/join/now/edit/{id}', [JoinNowController::class, 'joinNowEdit'])->name('join.now.edit');
+    Route::post('/join/now/update/{id}', [JoinNowController::class, 'joinNowUpdate'])->name('join.now.update');
+
+    Route::get('/join/form', [JoinNowController::class, 'joinForm'])->name('join.form');
+    Route::get('/join/form/edit/{id}', [JoinNowController::class, 'joinFormEdit'])->name('join.form.edit');
+    Route::post('/join/form/update/{id}', [JoinNowController::class, 'joinFormUpdate'])->name('join.form.update');
+
+    Route::get('/join/choose', [JoinNowController::class, 'joinChoose'])->name('join.choose');
+    Route::get('/join/choose/edit/{id}', [JoinNowController::class, 'joinChooseEdit'])->name('join.choose.edit');
+    Route::post('/join/choose/update/{id}', [JoinNowController::class, 'joinChooseUpdate'])->name('join.choose.update');
+
+    Route::get('/join/happens', [JoinNowController::class, 'joinHappens'])->name('join.happens');
+    Route::get('/join/happens/heading/edit/{id}', [JoinNowController::class, 'joinHappensHeddingEdit'])->name('join.happens.heading.edit');
+    Route::post('/join/happens/heading/update/{id}', [JoinNowController::class, 'joinHappensHeddingUpdate'])->name('join.happens.heading.update');
+    Route::get('/join/happens/create', [JoinNowController::class, 'joinHappensCreate'])->name('join.happens.create');
+    Route::post('/join/happens/store', [JoinNowController::class, 'joinHappensStore'])->name('join.happens.store');
+    Route::get('/join/happens/edit/{id}', [JoinNowController::class, 'joinHappensEdit'])->name('join.happens.edit');
+    Route::post('/join/happens/update/{id}', [JoinNowController::class, 'joinHappensUpdate'])->name('join.happens.update');
+    Route::delete('/join/happens/destroy/{id}', [JoinNowController::class, 'joinHappensDestroy'])->name('join.happens.destroy');
 });
 
 require __DIR__ . '/settings.php';

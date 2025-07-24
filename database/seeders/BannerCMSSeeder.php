@@ -39,6 +39,32 @@ class BannerCMSSeeder extends Seeder
                 'btn_text1_fr' => null,
                 'btn_text2_fr' => null,
                 'image' => null,
+            ],
+            [
+                'language' => 'english',
+                'section' => 'join_now',
+                'title_eng' => 'JOIN NOW',
+                'sub_title_eng' => "Thank you for your interest in Supertrade. We're here to answer any questions you might have.",
+                'btn_text1_eng' => null,
+                'btn_text2_eng' => null,
+                'title_fr' => null,
+                'sub_title_fr' => null,
+                'btn_text1_fr' => null,
+                'btn_text2_fr' => null,
+                'image' => null,
+            ],
+            [
+                'language' => 'france',
+                'section' => 'join_now',
+                'title_eng' => null,
+                'sub_title_eng' => null,
+                'btn_text1_eng' => null,
+                'btn_text2_eng' => null,
+                'title_fr' => 'REJOIGNEZ-NOUS',
+                'sub_title_fr' => 'Merci de votre intérêt pour Supertrade. Nous sommes là pour répondre à toutes vos questions.',
+                'btn_text1_fr' => null,
+                'btn_text2_fr' => null,
+                'image' => null,
             ]
         ]);
     }

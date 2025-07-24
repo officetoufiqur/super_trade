@@ -21,31 +21,36 @@ const props = defineProps<{
     chooseHeaderEng: {
         id: number;
         language: string;
-        trading_header_eng: string;
-        trading_sub_header_eng: string;
+        service_choose_header_eng: string;
+        service_choose_sub_header_eng: string;
     };
     chooseHeaderFr: {
         id: number;
         language: string;
-        trading_header_fr: string;
-        trading_sub_header_fr: string;
+        service_choose_header_fr: string;
+        service_choose_sub_header_fr: string;
     };
-    chooseCardEng:{
+    chooseCard:{
         id: number;
         language: string;
-        trading_card_image: string;
-        trading_card_title_eng: string;
-        trading_card_sub_title_eng: string;
-        trading_card_list1_eng: string;
-        trading_card_list2_eng: string;
-        trading_card_list3_eng: string;
-        trading_card_title_fr: string;
-        trading_card_sub_title_fr: string;
-        trading_card_list1_fr: string;
-        trading_card_list2_fr: string;
-        trading_card_list3_fr: string;
+        service_choose_card_icon: string;
+        service_choose_card_title_eng: string;
+        service_choose_card_sub_title_eng: string;
+        service_choose_card_title_fr: string;
+        service_choose_card_sub_title_fr: string;
     }[];
 }>();
+
+const columns = [
+    { key: 'id', label: 'ID' },
+    { key: 'language', label: 'Language' },
+    { key: 'service_choose_card_icon', label: 'Icon' },
+    { key: 'service_choose_card_title_eng', label: 'Title(ENG)' },
+    { key: 'service_choose_card_sub_title_eng', label: 'Sub Title(ENG)' },
+    { key: 'service_choose_card_title_fr', label: 'Title(FR)' },
+    { key: 'service_choose_card_sub_title_fr', label: 'Sub Title(FR)' },
+    { key: 'action', label: 'Action' },
+]
 
 function deleteCard(id: number) {
     Swal.fire({
@@ -58,23 +63,12 @@ function deleteCard(id: number) {
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            router.delete(`/service/trading/card/delete/${id}`, {
+            router.delete(`/service/choose/card/delete/${id}`, {
                 preserveScroll: true,
             });
         }
     })
 }
-
-const columns = [
-    { key: 'id', label: 'ID' },
-    { key: 'language', label: 'Language' },
-    { key: 'trading_card_image', label: 'Image' },
-    { key: 'trading_card_title_eng', label: 'Title(ENG)' },
-    { key: 'trading_card_sub_title_eng', label: 'Sub Title(ENG)' },
-    { key: 'trading_card_title_fr', label: 'Title(FR)' },
-    { key: 'trading_card_sub_title_fr', label: 'Sub Title(FR)' },
-    { key: 'action', label: 'Action' },
-]
 
 </script>
 
@@ -110,22 +104,22 @@ const columns = [
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-if="props.tradingHeaderEng">
+                        <tr v-if="props.chooseHeaderEng">
                             <th scope="row" class="border px-4 py-2">
-                                {{ props.tradingHeaderEng.id }}
+                                {{ props.chooseHeaderEng.id }}
                             </th>
                             <td class="border px-4 py-2">
-                                {{ props.tradingHeaderEng.language }}
+                                {{ props.chooseHeaderEng.language }}
                             </td>
                             <td class="border px-4 py-2">
-                                {{ props.tradingHeaderEng.trading_header_eng }}
+                                {{ props.chooseHeaderEng.service_choose_header_eng }}
                             </td>
                             <td class="border px-4 py-2">
-                                {{ props.tradingHeaderEng.trading_sub_header_eng }}
+                                {{ props.chooseHeaderEng.service_choose_sub_header_eng }}
                             </td>
                             <td class="border px-4 py-2">
                                 <div class="flex gap-2">
-                                    <Link :href="'/service/trading/heading/edit/' + props.tradingHeaderEng.id">
+                                    <Link :href="'/service/choose/heading/edit/' + props.chooseHeaderEng.id">
                                     <SquarePenIcon
                                         class="w-9 h-7 bg-[#74B53B] p-1 rounded text-white hover:bg-[#344248] duration-300" />
                                     </Link>
@@ -133,22 +127,22 @@ const columns = [
                             </td>
                         </tr>
 
-                        <tr v-if="props.tradingHeaderFr">
+                        <tr v-if="props.chooseHeaderFr">
                             <th scope="row" class="border px-4 py-2">
-                                {{ props.tradingHeaderFr.id }}
+                                {{ props.chooseHeaderFr.id }}
                             </th>
                             <td class="border px-4 py-2">
-                                {{ props.tradingHeaderFr.language }}
+                                {{ props.chooseHeaderFr.language }}
                             </td>
                             <td class="border px-4 py-2">
-                                {{ props.tradingHeaderFr.trading_header_fr }}
+                                {{ props.chooseHeaderFr.service_choose_header_fr }}
                             </td>
                             <td class="border px-4 py-2">
-                                {{ props.tradingHeaderFr.trading_sub_header_fr }}
+                                {{ props.chooseHeaderFr.service_choose_sub_header_fr }}
                             </td>
                             <td class="border px-4 py-2">
                                 <div class="flex gap-2">
-                                    <Link :href="'/service/trading/heading/edit/' + props.tradingHeaderFr.id">
+                                    <Link :href="'/service/choose/heading/edit/' + props.chooseHeaderFr.id">
                                     <SquarePenIcon
                                         class="w-9 h-7 bg-[#74B53B] p-1 rounded text-white hover:bg-[#344248] duration-300" />
                                     </Link>
@@ -160,18 +154,10 @@ const columns = [
             </div>
 
             <div class="mt-10">
-                <Table :plans="props.tradingCard" :columns="columns" title="About Cards Data List" :show-create-button="true" :create-title="'Create Trading Card'" :create-route="'/service/trading/card/create'">
-                    <template #trading_card_image="{ item }">
-                        <div v-if="item.trading_card_image">
-                            <img :src="item.trading_card_image" alt="image" class="w-15 rounded">
-                        </div>
-                        <div v-else>
-                            <span class="text-sm italic text-gray-500">N/I</span>
-                        </div>
-                    </template>
+                <Table :plans="props.chooseCard" :columns="columns" title="About Cards Data List" :show-create-button="true" :create-title="'Create Choose Card'" :create-route="'/service/choose/card/create'">
                     <template #action="{ item }">
                         <div class="flex items-center gap-2">
-                            <Link :href="'/service/trading/edit/' + item.id">
+                            <Link :href="'/service/choose/edit/' + item.id">
                             <SquarePenIcon
                                 class="w-9 h-7 bg-[#74B53B] p-1 rounded text-white hover:bg-[#344248] duration-300" />
                             </Link>

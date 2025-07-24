@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\About;
 use App\Models\Banner;
 use App\Models\Footer;
 use App\Models\Navbar;
+use App\Models\JoinNow;
+use App\Models\Service;
+use App\Models\JoinCard;
+use App\Models\JoinForm;
+use App\Models\BannerCMS;
 use App\Models\SuperFait;
 use App\Models\Supertrade;
 use App\Trait\ApiResponse;
 use Illuminate\Http\Request;
+use App\Models\JoinWhyChoose;
 use App\Http\Controllers\Controller;
-use App\Models\About;
-use App\Models\BannerCMS;
-use App\Models\Service;
 
 class APIController extends Controller
 {
@@ -99,7 +103,7 @@ class APIController extends Controller
     public function servicesApi()
     {
         // service banner
-        $serviceBannerEng = BannerCMS::where('language', 'english')->where('section', 'service')->select('id', 'title_eng', 'sub_title_eng','image')->first();
+        $serviceBannerEng = BannerCMS::where('language', 'english')->where('section', 'service')->select('id', 'title_eng', 'sub_title_eng', 'image')->first();
         $serviceBannerFr = BannerCMS::where('language', 'france')->where('section', 'service')->select('id', 'title_fr', 'sub_title_fr')->first();
 
         // service card
@@ -111,8 +115,8 @@ class APIController extends Controller
         $tradingHeaderFr = Service::where('language', 'france')->where('section', 'trading_hedding')->select('id', 'trading_header_fr', 'trading_sub_header_fr')->first();
 
         // trading card
-        $tradingCardEng = Service::where('language', 'english')->where('section', 'trading')->select('id', 'trading_card_image', 'trading_card_title_eng', 'trading_card_sub_title_eng','trading_card_list1_eng','trading_card_list2_eng','trading_card_list3_eng')->get();
-        $tradingCardFr = Service::where('language', 'france')->where('section', 'trading')->select('id', 'trading_card_image', 'trading_card_title_fr', 'trading_card_sub_title_fr','trading_card_list1_fr','trading_card_list2_fr','trading_card_list3_fr')->get();
+        $tradingCardEng = Service::where('language', 'english')->where('section', 'trading')->select('id', 'trading_card_image', 'trading_card_title_eng', 'trading_card_sub_title_eng', 'trading_card_list1_eng', 'trading_card_list2_eng', 'trading_card_list3_eng')->get();
+        $tradingCardFr = Service::where('language', 'france')->where('section', 'trading')->select('id', 'trading_card_image', 'trading_card_title_fr', 'trading_card_sub_title_fr', 'trading_card_list1_fr', 'trading_card_list2_fr', 'trading_card_list3_fr')->get();
 
         // service choose
         $chooseHeaderEng = Service::where('language', 'english')->where('section', 'service_choose_header')->select('id', 'service_choose_header_eng', 'service_choose_sub_header_eng')->first();
@@ -125,5 +129,54 @@ class APIController extends Controller
         $data = compact('serviceBannerEng', 'serviceBannerFr', 'serviceCardEng', 'serviceCardFr', 'tradingHeaderEng', 'tradingHeaderFr', 'tradingCardEng', 'tradingCardFr', 'chooseHeaderEng', 'chooseHeaderFr', 'chooseCardEng', 'chooseCardFr');
 
         return $this->successResponse($data, 'Services fetched successfully', 200, 'services');
+    }
+
+    public function joinNowApi()
+    {
+        // join now banner
+        $joinBannerEng = BannerCMS::where('language', 'english')->where('section', 'join_now')->select('id', 'title_eng', 'sub_title_eng', 'image')->first();
+        $joinBannerFr = BannerCMS::where('language', 'france')->where('section', 'join_now')->select('id', 'title_fr', 'sub_title_fr')->first();
+
+        // join now
+        $joinNowEng = JoinNow::where('language', 'english')->first();
+        $joinNowFr = JoinNow::where('language', 'france')->first();
+
+        // join form
+        $joinFormEng = JoinForm::where('language', 'english')->first();
+        $joinFormFr = JoinForm::where('language', 'france')->first();
+
+        // join why choose
+        $joinChooseEng = JoinWhyChoose::where('language', 'english')->first();
+        $joinChooseFr = JoinWhyChoose::where('language', 'france')->first();
+
+        // what happens heading
+        $whatHappensheadingEng = JoinCard::where('language', 'english')->where('section', 'happens_heading')->select('id', 'join_card_heading_eng', 'join_card_sub_heading_eng')->first();
+        $whatHappensheadingFr = JoinCard::where('language', 'france')->where('section', 'happens_heading')->select('id', 'join_card_heading_fr', 'join_card_sub_heading_fr')->first();
+
+        // what happens card
+        $whatHappensEng = JoinCard::where('language', 'english')->where('section', 'happens')->select('id', 'join_card_icon_eng', 'join_card_title_eng','join_card_sub_title_eng')->get();
+        $whatHappensFr = JoinCard::where('language', 'france')->where('section', 'happens')->select('id', 'join_card_icon_fr', 'join_card_title_fr','join_card_sub_title_fr')->get();
+
+        // what questions heading
+        $whatQuestionsheadingEng = JoinCard::where('language', 'english')->where('section', 'questions_heading')->select('id', 'join_card_heading_eng', 'join_card_sub_heading_eng')->first();
+        $whatQuestionsheadingFr = JoinCard::where('language', 'france')->where('section', 'questions_heading')->select('id', 'join_card_heading_fr', 'join_card_sub_heading_fr')->first();
+
+        // what questions card
+        $whatQuestionsEng = JoinCard::where('language', 'english')->where('section', 'questions')->select('id', 'join_card_icon_eng', 'join_card_title_eng','join_card_sub_title_eng')->get();
+        $whatQuestionsFr = JoinCard::where('language', 'france')->where('section', 'questions')->select('id', 'join_card_icon_fr', 'join_card_title_fr','join_card_sub_title_fr')->get();
+
+        $joinChooseEng = collect($joinChooseEng)->filter();
+        $joinChooseFr = collect($joinChooseFr)->filter();
+
+        $joinFormEng = collect($joinFormEng)->filter();
+        $joinFormFr = collect($joinFormFr)->filter();
+
+        $joinNowFr = collect($joinNowFr)->filter();
+        $joinNowEng = collect($joinNowEng)->filter();
+
+
+        $data = compact('joinBannerEng', 'joinBannerFr', 'joinNowEng', 'joinNowFr', 'joinFormEng', 'joinFormFr', 'joinChooseEng', 'joinChooseFr', 'whatHappensheadingEng', 'whatHappensheadingFr', 'whatHappensEng', 'whatHappensFr', 'whatQuestionsheadingEng', 'whatQuestionsheadingFr', 'whatQuestionsEng', 'whatQuestionsFr');
+
+        return $this->successResponse($data, 'Join Now fetched successfully', 200, 'joinNow');
     }
 }

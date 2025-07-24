@@ -197,12 +197,82 @@ class ServiceController extends Controller
     public function serviceChoose()
     {
         // service choose
-        $chooseHeaderEng = Service::where('language', 'english')->where('section', 'service_choose_header')->select('id', 'service_choose_header_eng', 'service_choose_sub_header_eng')->first();
-        $chooseHeaderFr = Service::where('language', 'france')->where('section', 'service_choose_header')->select('id', 'service_choose_header_fr', 'service_choose_sub_header_fr')->first();
+        $chooseHeaderEng = Service::where('language', 'english')->where('section', 'service_choose_header')->select('id', 'language', 'service_choose_header_eng', 'service_choose_sub_header_eng')->first();
+        $chooseHeaderFr = Service::where('language', 'france')->where('section', 'service_choose_header')->select('id', 'language', 'service_choose_header_fr', 'service_choose_sub_header_fr')->first();
 
 
-        $chooseCardEng = Service::where('section', 'service_choose')->get();
+        $chooseCard = Service::where('section', 'service_choose')->get();
 
-        return Inertia::render('Services/Choose/Index', compact('chooseHeaderEng', 'chooseHeaderFr', 'chooseCardEng'));
+        return Inertia::render('Services/Choose/Index', compact('chooseHeaderEng', 'chooseHeaderFr', 'chooseCard'));
+    }
+
+    public function serviceChooseHeddingEdit($id)
+    {
+        $serviceChoose = Service::findOrFail($id);
+        return Inertia::render('Services/Choose/Heading/Edit', compact('serviceChoose'));
+    }
+
+    public function serviceChooseHeddingUpdate(Request $request, $id)
+    {
+        $serviceChoose = Service::findOrFail($id);
+
+        $serviceChoose->language = $request->language;
+        $serviceChoose->section = 'service_choose_header';
+        $serviceChoose->service_choose_header_eng = $request->service_choose_header_eng;
+        $serviceChoose->service_choose_sub_header_eng = $request->service_choose_sub_header_eng;
+        $serviceChoose->service_choose_header_fr = $request->service_choose_header_fr;
+        $serviceChoose->service_choose_sub_header_fr = $request->service_choose_sub_header_fr;
+        $serviceChoose->save();
+
+        return redirect()->route('service.choose')->with('message', 'Choose hedding updated successfully');
+    }
+
+    public function serviceChooseCreate()
+    {
+        return Inertia::render('Services/Choose/Create');
+    }
+
+    public function serviceChooseStore(Request $request)
+    {
+        $serviceChoose = new Service();
+        $serviceChoose->language = $request->language;
+        $serviceChoose->section = 'service_choose';
+        $serviceChoose->service_choose_card_icon = $request->service_choose_card_icon;
+        $serviceChoose->service_choose_card_title_eng = $request->service_choose_card_title_eng;
+        $serviceChoose->service_choose_card_sub_title_eng = $request->service_choose_card_sub_title_eng;
+        $serviceChoose->service_choose_card_title_fr = $request->service_choose_card_title_fr;
+        $serviceChoose->service_choose_card_sub_title_fr = $request->service_choose_card_sub_title_fr;
+        $serviceChoose->save();
+
+        return redirect()->route('service.choose')->with('message', 'Choose created successfully');
+    }
+
+    public function serviceChooseEdit($id)
+    {
+        $serviceChoose = Service::findOrFail($id);
+        return Inertia::render('Services/Choose/Edit', compact('serviceChoose'));
+    }
+
+    public function serviceChooseUpdate(Request $request, $id)
+    {
+        $serviceChoose = Service::findOrFail($id);
+
+        $serviceChoose->language = $request->language;
+        $serviceChoose->section = 'service_choose';
+        $serviceChoose->service_choose_card_icon = $request->service_choose_card_icon;
+        $serviceChoose->service_choose_card_title_eng = $request->service_choose_card_title_eng;
+        $serviceChoose->service_choose_card_sub_title_eng = $request->service_choose_card_sub_title_eng;
+        $serviceChoose->service_choose_card_title_fr = $request->service_choose_card_title_fr;
+        $serviceChoose->service_choose_card_sub_title_fr = $request->service_choose_card_sub_title_fr;
+        $serviceChoose->save();
+
+        return redirect()->route('service.choose')->with('message', 'Choose updated successfully');
+    }
+
+    public function serviceChooseDestroy($id)
+    {
+        $serviceChoose = Service::findOrFail($id);
+        $serviceChoose->delete();
+        return redirect()->route('service.choose')->with('message', 'Choose deleted successfully');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\JoinForm;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -30,6 +31,10 @@ class DatabaseSeeder extends Seeder
             AboutSeeder::class,
             BannerCMSSeeder::class,
             ServiceSeeder::class,
+            JoinNowSeeder::class,
+            JoinFormSeeder::class,
+            JoinWhyChooseSeeder::class,
+            JoinCardSeeder::class,
         ]);
     }
 }
