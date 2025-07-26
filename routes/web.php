@@ -2,8 +2,10 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Web\Admin\FaqController;
 use App\Http\Controllers\Web\Admin\AboutController;
 use App\Http\Controllers\Web\Admin\NavbarController;
+use App\Http\Controllers\Web\Admin\BenefitController;
 use App\Http\Controllers\Web\Admin\JoinNowController;
 use App\Http\Controllers\Web\Admin\ServiceController;
 use App\Http\Controllers\Web\Frontend\Admin\HomeController;
@@ -127,6 +129,34 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/join/happens/edit/{id}', [JoinNowController::class, 'joinHappensEdit'])->name('join.happens.edit');
     Route::post('/join/happens/update/{id}', [JoinNowController::class, 'joinHappensUpdate'])->name('join.happens.update');
     Route::delete('/join/happens/destroy/{id}', [JoinNowController::class, 'joinHappensDestroy'])->name('join.happens.destroy');
+
+    // benefit
+    Route::get('/benefit/banner', [BenefitController::class, 'benefitBanner'])->name('benefit.banner');
+    Route::get('/benefit/banner/edit/{id}', [BenefitController::class, 'benefitBannerEdit'])->name('benefit.banner.edit');
+    Route::post('/benefit/banner/update/{id}', [BenefitController::class, 'benefitBannerUpdate'])->name('benefit.banner.update');
+
+    //Membership 
+    Route::get('/benefit/membership', [BenefitController::class, 'benefitMembership'])->name('benefit.membership');
+    Route::get('/benefit/membership/create', [BenefitController::class, 'benefitMembershipCreate'])->name('benefit.membership.create');
+    Route::post('/benefit/membership/store', [BenefitController::class, 'benefitMembershipStore'])->name('benefit.membership.store');
+    Route::get('/benefit/heading/edit/{id}', [BenefitController::class, 'benefitHeadingEdit'])->name('benefit.heading.edit');
+    Route::post('/benefit/heading/update/{id}', [BenefitController::class, 'benefitHeadingUpdate'])->name('benefit.heading.update');
+    Route::get('/benefit/membership/edit/{id}', [BenefitController::class, 'benefitMembershipEdit'])->name('benefit.membership.edit');
+    Route::post('/benefit/membership/update/{id}', [BenefitController::class, 'benefitMembershipUpdate'])->name('benefit.membership.update');
+    Route::delete('/benefit/membership/destroy/{id}', [BenefitController::class, 'benefitMembershipDestroy'])->name('benefit.membership.destroy');
+
+    // benefit
+    Route::get('/benefit/newsletter', [BenefitController::class, 'benefitNewsletter'])->name('benefit.newsletter');
+    Route::get('/benefit/newsletter/edit/{id}', [BenefitController::class, 'benefitNewsletterEdit'])->name('benefit.newsletter.edit');
+    Route::post('/benefit/newsletter/update/{id}', [BenefitController::class, 'benefitNewsletterUpdate'])->name('benefit.newsletter.update');
+
+    // faq
+    Route::get('/faq', [FaqController::class, 'faq'])->name('faq');
+    Route::get('/faq/create', [FaqController::class, 'faqCreate'])->name('faq.create');
+    Route::post('/faq/store', [FaqController::class, 'faqStore'])->name('faq.store');
+    Route::get('/faq/edit/{id}', [FaqController::class, 'faqEdit'])->name('faq.edit');
+    Route::post('/faq/update/{id}', [FaqController::class, 'faqUpdate'])->name('faq.update');
+    Route::delete('/faq/destroy/{id}', [FaqController::class, 'faqDestroy'])->name('faq.destroy');
 });
 
 require __DIR__ . '/settings.php';

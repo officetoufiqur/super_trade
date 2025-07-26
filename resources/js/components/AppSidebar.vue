@@ -3,7 +3,7 @@ import NavMain from '@/components/NavMain.vue';
 import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { HouseIcon, InfoIcon, LayoutGrid, MousePointerClickIcon, UserRoundCogIcon } from 'lucide-vue-next';
+import { HandshakeIcon, HouseIcon, InfoIcon, LayoutGrid, MousePointerClickIcon, UserRoundCogIcon } from 'lucide-vue-next';
 
 const mainNavItems: NavItem[] = [
   {
@@ -100,6 +100,38 @@ const mainNavItems: NavItem[] = [
       {
         title: 'Join Happens',
         href: '/join/happens',
+      }
+    ]
+  },
+  {
+    title: 'Benefit',
+    icon: HandshakeIcon,
+    subMenu: [
+      {
+        title: 'Banner',
+        href: '/benefit/banner',
+      },
+      {
+        title: 'Membership',
+        href: '/benefit/membership',
+      },
+      {
+        title: 'Newsletter',
+        href: '/benefit/newsletter',
+      }
+    ]
+  },
+  {
+    title: 'Faq',
+    icon: HandshakeIcon,
+    subMenu: [
+      {
+        title: 'Banner',
+        href: '/benefit/banner',
+      },
+      {
+        title: 'Faq',
+        href: '/faq',
       }
     ]
   }

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Faq;
 use App\Models\About;
 use App\Models\Banner;
 use App\Models\Footer;
 use App\Models\Navbar;
+use App\Models\Benefit;
 use App\Models\JoinNow;
 use App\Models\Service;
 use App\Models\JoinCard;
@@ -178,5 +180,47 @@ class APIController extends Controller
         $data = compact('joinBannerEng', 'joinBannerFr', 'joinNowEng', 'joinNowFr', 'joinFormEng', 'joinFormFr', 'joinChooseEng', 'joinChooseFr', 'whatHappensheadingEng', 'whatHappensheadingFr', 'whatHappensEng', 'whatHappensFr', 'whatQuestionsheadingEng', 'whatQuestionsheadingFr', 'whatQuestionsEng', 'whatQuestionsFr');
 
         return $this->successResponse($data, 'Join Now fetched successfully', 200, 'joinNow');
+    }
+
+    public function benefitApi()
+    {
+        // benefit banner
+        $benefitBannerEng = BannerCMS::where('language', 'english')->where('section', 'benefit')->select('id', 'title_eng', 'sub_title_eng', 'image')->first();
+        $benefitBannerFr = BannerCMS::where('language', 'france')->where('section', 'benefit')->select('id', 'title_fr', 'sub_title_fr')->first();
+
+        // benefit heading
+        $benefitHeadingEng = Benefit::where('language', 'english')->where('section', 'heading')->select('id', 'heading_eng', 'sub_heading_eng')->first();
+        $benefitHeadingFr = Benefit::where('language', 'france')->where('section', 'heading')->select('id', 'heading_fr', 'sub_heading_fr')->first();
+
+        // benefit membership
+        $benefitMembershipEng = Benefit::where('language', 'english')->where('section', 'card')->select('id', 'image', 'icon','card_title_eng', 'card_description_eng')->get();
+        $benefitMembershipFr = Benefit::where('language', 'france')->where('section', 'card')->select('id', 'card_title_fr', 'card_description_fr')->get();
+        
+        // benefit newsletter
+        $benefitNewsletterEng = Benefit::where('language', 'english')->where('section', 'newsletter')->select('id', 'newsletter_title_eng', 'newsletter_sub_title_eng', 'newsletter_btn_text_eng')->first();
+        $benefitNewsletterFr = Benefit::where('language', 'france')->where('section', 'newsletter')->select('id', 'newsletter_title_fr', 'newsletter_sub_title_fr', 'newsletter_btn_text_fr')->first();
+
+        $data = compact('benefitBannerEng', 'benefitBannerFr', 'benefitHeadingEng', 'benefitHeadingFr', 'benefitMembershipEng', 'benefitMembershipFr', 'benefitNewsletterEng', 'benefitNewsletterFr');
+
+        return $this->successResponse($data, 'Benefit fetched successfully', 200, 'benefit');
+    }
+
+    public function faqApi()
+    {
+        // faq banner
+        $faqBannerEng = BannerCMS::where('language', 'english')->where('section', 'faq')->select('id', 'sub_title_eng', 'image')->first();
+        $faqBannerFr = BannerCMS::where('language', 'france')->where('section', 'faq')->select('id', 'sub_title_fr')->first();
+
+        // faq heading
+        $faqHeadingEng = Faq::where('language', 'english')->where('section', 'heading')->select('id', 'heading_eng', 'sub_heading_eng')->first();
+        $faqHeadingFr = Faq::where('language', 'france')->where('section', 'heading')->select('id', 'heading_fr', 'sub_heading_fr')->first();
+
+        // faq card
+        $faqCardEng = Faq::where('language', 'english')->where('section', 'faq')->select('id', 'question_eng', 'answer_eng')->get();
+        $faqCardFr = Faq::where('language', 'france')->where('section', 'faq')->select('id', 'question_fr', 'answer_fr')->get();
+
+        $data = compact('faqBannerEng', 'faqBannerFr', 'faqHeadingEng', 'faqHeadingFr', 'faqCardEng', 'faqCardFr');
+
+        return $this->successResponse($data, 'Faq fetched successfully', 200, 'faq');
     }
 }

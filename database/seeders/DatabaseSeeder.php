@@ -35,6 +35,8 @@ class DatabaseSeeder extends Seeder
             JoinFormSeeder::class,
             JoinWhyChooseSeeder::class,
             JoinCardSeeder::class,
+            BenefitSeeder::class,
+            FaqSeeder::class,
         ]);
     }
 }
